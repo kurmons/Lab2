@@ -36,23 +36,28 @@ namespace TextEditor
             this.mnuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintPreview = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUndo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCut = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuFont = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.tlsTools = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.printToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -60,13 +65,21 @@ namespace TextEditor
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.sstStatus = new System.Windows.Forms.StatusStrip();
             this.stlStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txtContent = new System.Windows.Forms.TextBox();
+            this.txtContent = new System.Windows.Forms.RichTextBox();
             this.dlgOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.dlgSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.dlgFont = new System.Windows.Forms.FontDialog();
             this.dlgPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.dlgPrintPreview = new System.Windows.Forms.PrintPreviewDialog();
             this.dlgPrint = new System.Windows.Forms.PrintDialog();
+            this.tlsBold = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tlsItalic = new System.Windows.Forms.ToolStripButton();
+            this.tlsUnderline = new System.Windows.Forms.ToolStripButton();
+            this.tekstsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBold = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuItalic = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUnderline = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMainMenu.SuspendLayout();
             this.tlsTools.SuspendLayout();
             this.sstStatus.SuspendLayout();
@@ -77,6 +90,7 @@ namespace TextEditor
             this.mnuMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFile,
             this.mnuEdit,
+            this.tekstsToolStripMenuItem,
             this.mnuHelp});
             this.mnuMainMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMainMenu.Name = "mnuMainMenu";
@@ -91,6 +105,7 @@ namespace TextEditor
             this.mnuOpen,
             this.mnuSave,
             this.mnuSaveAs,
+            this.mnuPrintPreview,
             this.mnuPrint,
             this.toolStripMenuItem1,
             this.mnuExit});
@@ -131,6 +146,14 @@ namespace TextEditor
             this.mnuSaveAs.Text = "&Saglabāt kā...";
             this.mnuSaveAs.Click += new System.EventHandler(this.mnuSaveAs_Click);
             // 
+            // mnuPrintPreview
+            // 
+            this.mnuPrintPreview.Name = "mnuPrintPreview";
+            this.mnuPrintPreview.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
+            this.mnuPrintPreview.Size = new System.Drawing.Size(215, 22);
+            this.mnuPrintPreview.Text = "&Priekšapskatīt...";
+            this.mnuPrintPreview.Click += new System.EventHandler(this.mnuPrintPreview_Click);
+            // 
             // mnuPrint
             // 
             this.mnuPrint.Name = "mnuPrint";
@@ -138,6 +161,11 @@ namespace TextEditor
             this.mnuPrint.Size = new System.Drawing.Size(215, 22);
             this.mnuPrint.Text = "&Drukāt";
             this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(212, 6);
             // 
             // mnuExit
             // 
@@ -150,6 +178,8 @@ namespace TextEditor
             // mnuEdit
             // 
             this.mnuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuUndo,
+            this.toolStripMenuItem3,
             this.mnuCopy,
             this.mnuCut,
             this.mnuPaste,
@@ -158,6 +188,19 @@ namespace TextEditor
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.Size = new System.Drawing.Size(59, 20);
             this.mnuEdit.Text = "&Rediģēt";
+            // 
+            // mnuUndo
+            // 
+            this.mnuUndo.Name = "mnuUndo";
+            this.mnuUndo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.mnuUndo.Size = new System.Drawing.Size(208, 22);
+            this.mnuUndo.Text = "Atsaukt";
+            this.mnuUndo.Click += new System.EventHandler(this.mnuUndo_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(205, 6);
             // 
             // mnuCopy
             // 
@@ -183,6 +226,11 @@ namespace TextEditor
             this.mnuPaste.Text = "&Ielīmēt";
             this.mnuPaste.Click += new System.EventHandler(this.mnuPaste_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(205, 6);
+            // 
             // mnuFont
             // 
             this.mnuFont.Name = "mnuFont";
@@ -207,28 +255,24 @@ namespace TextEditor
             this.mnuAbout.Text = "Par programmu...";
             this.mnuAbout.Click += new System.EventHandler(this.mnuAbout_Click);
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(212, 6);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(205, 6);
-            // 
             // tlsTools
             // 
             this.tlsTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripButton,
             this.openToolStripButton,
             this.saveToolStripButton,
+            this.toolStripButton1,
             this.printToolStripButton,
             this.toolStripSeparator,
+            this.toolStripButton2,
             this.cutToolStripButton,
             this.copyToolStripButton,
             this.pasteToolStripButton,
             this.toolStripSeparator1,
+            this.tlsBold,
+            this.tlsItalic,
+            this.tlsUnderline,
+            this.toolStripSeparator2,
             this.helpToolStripButton});
             this.tlsTools.Location = new System.Drawing.Point(0, 24);
             this.tlsTools.Name = "tlsTools";
@@ -266,6 +310,16 @@ namespace TextEditor
             this.saveToolStripButton.Text = "&Save";
             this.saveToolStripButton.Click += new System.EventHandler(this.mnuSave_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "&PrintPreview";
+            this.toolStripButton1.Click += new System.EventHandler(this.mnuPrintPreview_Click);
+            // 
             // printToolStripButton
             // 
             this.printToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -281,6 +335,16 @@ namespace TextEditor
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "&Undo";
+            this.toolStripButton2.Click += new System.EventHandler(this.mnuUndo_Click);
+            // 
             // cutToolStripButton
             // 
             this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -288,7 +352,7 @@ namespace TextEditor
             this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripButton.Name = "cutToolStripButton";
             this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.cutToolStripButton.Text = "C&ut";
+            this.cutToolStripButton.Text = "&Cut";
             this.cutToolStripButton.Click += new System.EventHandler(this.mnuCut_Click);
             // 
             // copyToolStripButton
@@ -343,19 +407,17 @@ namespace TextEditor
             // 
             // txtContent
             // 
-            this.txtContent.AcceptsReturn = true;
             this.txtContent.AcceptsTab = true;
             this.txtContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContent.Location = new System.Drawing.Point(12, 52);
             this.txtContent.MaxLength = 0;
-            this.txtContent.Multiline = true;
             this.txtContent.Name = "txtContent";
-            this.txtContent.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtContent.Size = new System.Drawing.Size(560, 224);
             this.txtContent.TabIndex = 3;
-            this.txtContent.TextChanged += new System.EventHandler(this.txtContent_TextChanged);
+            this.txtContent.Text = "";
+            this.txtContent.TextChanged += new System.EventHandler(this.txtContent_TextChanged_1);
             // 
             // dlgOpenFile
             // 
@@ -369,7 +431,7 @@ namespace TextEditor
             // 
             this.dlgPrintPreview.AutoScrollMargin = new System.Drawing.Size(0, 0);
             this.dlgPrintPreview.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.dlgPrintPreview.ClientSize = new System.Drawing.Size(400, 300);
+            this.dlgPrintPreview.ClientSize = new System.Drawing.Size(359, 211);
             this.dlgPrintPreview.Enabled = true;
             this.dlgPrintPreview.Icon = ((System.Drawing.Icon)(resources.GetObject("dlgPrintPreview.Icon")));
             this.dlgPrintPreview.Name = "dlgPrintPreview";
@@ -378,6 +440,72 @@ namespace TextEditor
             // dlgPrint
             // 
             this.dlgPrint.UseEXDialog = true;
+            // 
+            // tlsBold
+            // 
+            this.tlsBold.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tlsBold.Image = ((System.Drawing.Image)(resources.GetObject("tlsBold.Image")));
+            this.tlsBold.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsBold.Name = "tlsBold";
+            this.tlsBold.Size = new System.Drawing.Size(23, 22);
+            this.tlsBold.Text = "&Bold";
+            this.tlsBold.Click += new System.EventHandler(this.mnuBold_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tlsItalic
+            // 
+            this.tlsItalic.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tlsItalic.Image = ((System.Drawing.Image)(resources.GetObject("tlsItalic.Image")));
+            this.tlsItalic.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsItalic.Name = "tlsItalic";
+            this.tlsItalic.Size = new System.Drawing.Size(23, 22);
+            this.tlsItalic.Text = "&Italic";
+            this.tlsItalic.Click += new System.EventHandler(this.mnuItalic_Click);
+            // 
+            // tlsUnderline
+            // 
+            this.tlsUnderline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tlsUnderline.Image = ((System.Drawing.Image)(resources.GetObject("tlsUnderline.Image")));
+            this.tlsUnderline.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsUnderline.Name = "tlsUnderline";
+            this.tlsUnderline.Size = new System.Drawing.Size(23, 22);
+            this.tlsUnderline.Text = "&Underline";
+            this.tlsUnderline.Click += new System.EventHandler(this.mnuUnderline_Click);
+            // 
+            // tekstsToolStripMenuItem
+            // 
+            this.tekstsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuBold,
+            this.mnuItalic,
+            this.mnuUnderline});
+            this.tekstsToolStripMenuItem.Name = "tekstsToolStripMenuItem";
+            this.tekstsToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.tekstsToolStripMenuItem.Text = "Teksts";
+            // 
+            // mnuBold
+            // 
+            this.mnuBold.Name = "mnuBold";
+            this.mnuBold.Size = new System.Drawing.Size(180, 22);
+            this.mnuBold.Text = "&Bold";
+            this.mnuBold.Click += new System.EventHandler(this.mnuBold_Click);
+            // 
+            // mnuItalic
+            // 
+            this.mnuItalic.Name = "mnuItalic";
+            this.mnuItalic.Size = new System.Drawing.Size(180, 22);
+            this.mnuItalic.Text = "&Italic";
+            this.mnuItalic.Click += new System.EventHandler(this.mnuItalic_Click);
+            // 
+            // mnuUnderline
+            // 
+            this.mnuUnderline.Name = "mnuUnderline";
+            this.mnuUnderline.Size = new System.Drawing.Size(180, 22);
+            this.mnuUnderline.Text = "&Underline";
+            this.mnuUnderline.Click += new System.EventHandler(this.mnuUnderline_Click);
             // 
             // frmTextEditor
             // 
@@ -392,6 +520,7 @@ namespace TextEditor
             this.Name = "frmTextEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Teksta Redaktors";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTextEditor_FormClosing);
             this.Load += new System.EventHandler(this.frmTextEditor_Load);
             this.mnuMainMenu.ResumeLayout(false);
             this.mnuMainMenu.PerformLayout();
@@ -436,13 +565,26 @@ namespace TextEditor
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.StatusStrip sstStatus;
         private System.Windows.Forms.ToolStripStatusLabel stlStatus;
-        private System.Windows.Forms.TextBox txtContent;
+        private System.Windows.Forms.RichTextBox txtContent;
         private System.Windows.Forms.OpenFileDialog dlgOpenFile;
         private System.Windows.Forms.SaveFileDialog dlgSaveFile;
         private System.Windows.Forms.FontDialog dlgFont;
         private System.Drawing.Printing.PrintDocument dlgPrintDocument;
         private System.Windows.Forms.PrintPreviewDialog dlgPrintPreview;
         private System.Windows.Forms.PrintDialog dlgPrint;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintPreview;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem mnuUndo;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripMenuItem tekstsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuBold;
+        private System.Windows.Forms.ToolStripMenuItem mnuItalic;
+        private System.Windows.Forms.ToolStripMenuItem mnuUnderline;
+        private System.Windows.Forms.ToolStripButton tlsBold;
+        private System.Windows.Forms.ToolStripButton tlsItalic;
+        private System.Windows.Forms.ToolStripButton tlsUnderline;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

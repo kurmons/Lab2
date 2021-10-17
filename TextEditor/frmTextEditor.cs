@@ -36,9 +36,9 @@ namespace TextEditor
         /// <summary>
         /// Teksta redaktorā pašreiz ielādētā faila vārds
         /// </summary>
-        private string sFileName;
+        private string sFileName = "";
 
-        private const string DefaultFileName = "jauns.txt";
+        private const string DefaultFileName = "jauns";
 
         /// <summary>
         /// Teksta redaktorā pašreiz ielādētā faila vārda uzstādīšana un
@@ -78,17 +78,32 @@ namespace TextEditor
         /// </summary>
         private void NewFile()
         {
-            txtContent.Clear();
-            bNewFile = true;
-            Dirty = false;
-            sFileName = "";
-            SetTitle(OpenedFileName);
+            if (Dirty)
+            {
+                if (SaveFile(true))
+                {
+                    txtContent.Clear();
+                    bNewFile = true;
+                    Dirty = false;
+                    sFileName = "";
+                    SetTitle(OpenedFileName);
+                }
+            }
+            else
+            {
+                txtContent.Clear();
+                bNewFile = true;
+                Dirty = false;
+                sFileName = "";
+                SetTitle(OpenedFileName);
+            }
+            
         }
 
         /// <summary>
         /// Failu apstrādes dialogu filtru konstante.
         /// </summary>
-        private const string csFileDialogFilter = "Teksta faili|*.txt|Visi faili|*.*";
+        private const string csFileDialogFilter = "RTF Standarts|*.rtf|Teksta faili|*.txt|Visi faili|*.*";
 
         /// <summary>
         /// Failu apstrādes dialogu filtru konstante.
@@ -107,7 +122,7 @@ namespace TextEditor
             OpenedFileName = dlgSaveFile.FileName;
 
             // Ievadītā teksta saglabāšana norādītajā failā
-            File.WriteAllText(OpenedFileName, txtContent.Text);
+            File.WriteAllText(OpenedFileName, txtContent.Rtf);
 
             // Formas īpašību aktualizēšana
             bNewFile = Dirty = false;
@@ -154,7 +169,7 @@ namespace TextEditor
             }
 
             // Teksta saglabāšana failā
-            File.WriteAllText(OpenedFileName, txtContent.Text);
+            File.WriteAllText(OpenedFileName, txtContent.Rtf);
 
             // Formas īpašību aktualizēšana
             Dirty = false;
@@ -183,7 +198,7 @@ namespace TextEditor
                 return;
 
             // Teksta ielādēšana no faila
-            txtContent.Text = File.ReadAllText(dlgOpenFile.FileName);
+            txtContent.Rtf = File.ReadAllText(dlgOpenFile.FileName);
 
             // Formas īpašību aktualizēšana
             OpenedFileName = dlgOpenFile.FileName;
@@ -358,6 +373,118 @@ namespace TextEditor
 
             if (!e.HasMorePages)
                 this.sTextToPrint = txtContent.Text;
+        }
+
+        private void frmTextEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Dirty)
+            {
+                if (SaveFile(true))
+                {
+                    txtContent.Clear();
+                    bNewFile = true;
+                    Dirty = false;
+                    sFileName = "";
+                    SetTitle(OpenedFileName);
+                }
+                else
+                    e.Cancel = true;
+            }
+        }
+
+        private void mnuPrintPreview_Click(object sender, EventArgs e)
+        {
+            sTextToPrint = txtContent.Text;
+
+            // Dokumenta priekšapskates dialoga atvēršana
+            dlgPrintPreview.Document = dlgPrintDocument;
+            dlgPrintPreview.ShowDialog();
+        }
+
+        private void mnuUndo_Click(object sender, EventArgs e)
+        {
+            txtContent.Undo();
+        }
+
+        private void txtContent_TextChanged_1(object sender, EventArgs e)
+        {
+            // Tiklīdz teksts tiek izmainīts, aktualizē īpašību: 
+            Dirty = true;
+        }
+
+        private void mnuBold_Click(object sender, EventArgs e)
+        {
+            Font oldFont;
+            Font newFont;
+
+            // Izmantotā fonta iegūšana
+            oldFont = this.txtContent.SelectionFont;
+
+            // Ja tiek izmantots Bold fonts, tas tiek noņemts
+            if (oldFont.Bold)
+            {
+                newFont = new Font(oldFont, oldFont.Style & ~FontStyle.Bold);
+                tlsBold.Checked = false;
+            }
+            else
+            {
+                newFont = new Font(oldFont, oldFont.Style | FontStyle.Bold);
+                tlsBold.Checked = true;
+            }
+
+            // Jauna fonta ievietošana
+            this.txtContent.SelectionFont = newFont;
+            this.txtContent.Focus();
+        }
+
+        private void mnuItalic_Click(object sender, EventArgs e)
+        {
+            Font oldFont;
+            Font newFont;
+
+            // Izmantotā fonta iegūšana
+            oldFont = this.txtContent.SelectionFont;
+
+            // Ja tiek izmantots Italic fonts, tas tiek noņemts
+            if (oldFont.Italic)
+            {
+                newFont = new Font(oldFont, oldFont.Style & ~FontStyle.Italic);
+                tlsItalic.Checked = false;
+            }
+            else
+            {
+                newFont = new Font(oldFont, oldFont.Style | FontStyle.Italic);
+                tlsItalic.Checked = true;
+            }
+
+            // Jauna fonta ievietošana
+            this.txtContent.SelectionFont = newFont;
+            this.txtContent.Focus();
+        }
+
+        private void mnuUnderline_Click(object sender, EventArgs e)
+        {
+            Font oldFont;
+            Font newFont;
+
+            // Izmantotā fonta iegūšana
+            oldFont = this.txtContent.SelectionFont;
+
+            // Ja tiek izmantots Underline fonts, tastiek noņemts
+            if (oldFont.Underline)
+            {
+                newFont = new Font(oldFont, oldFont.Style & ~FontStyle.Underline);
+                tlsUnderline.Checked = false;
+            }
+            else
+            {
+                newFont = new Font(oldFont, oldFont.Style | FontStyle.Underline);
+                tlsUnderline.Checked = true;
+            }
+
+            // Jauna fonta ievietošana
+            this.txtContent.SelectionFont = newFont;
+            this.txtContent.Focus();
         }
     }
 }
